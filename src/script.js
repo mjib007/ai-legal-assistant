@@ -1,3 +1,12 @@
+// 🧠 Session 管理功能
+function getOrCreateSessionId() {
+    let sessionId = localStorage.getItem('legal-assistant-session');
+    if (!sessionId) {
+        sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('legal-assistant-session', sessionId);
+    }
+    return sessionId;
+}
 // 🧠 真正的 AI 回應生成（連接 n8n + OpenAI）
 async function generateAdvancedResponse(question) {
     try {
@@ -11,8 +20,9 @@ async function generateAdvancedResponse(question) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                question: question
-            })
+                question: question,
+                sessionId: getOrCreateSessionId()
+})
         });
 
         if (!response.ok) {
