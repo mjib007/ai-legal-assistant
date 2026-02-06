@@ -117,3 +117,32 @@ function addMessage(text, className, riskLevel = null, fullResponse = null) {
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+// 🎯 範例問題功能
+function askExample(question) {
+    // 直接呼叫 sendMessage 的邏輯，但先設定問題
+    addMessage(question, 'user-message');
+    
+    // 檢查是否為專業指令
+    if (question.startsWith('/')) {
+        handleCommand(question);
+    } else {
+        // 呼叫真正的 AI
+        generateAdvancedResponse(question).then(response => {
+            addMessage(response.content, 'bot-message', response.risk, response);
+        });
+    }
+}
+
+// ⌨️ 按Enter鍵發送訊息
+document.getElementById('user-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// 🎉 系統初始化
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 LegalMind AI 已啟動');
+    console.log('📚 真正的 AI 驅動系統已就緒');
+    console.log('🔗 連接到：https://mjib007.zeabur.app/webhook/legal-assistant');
+});
