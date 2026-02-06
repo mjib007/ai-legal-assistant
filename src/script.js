@@ -163,11 +163,26 @@ function handleCommand(command) {
     switch(command.toLowerCase()) {
         case '/review-contract':
             const reviewResult = {
-                content: "🔍 **合約審核模式啟動**\n\n請提供合約內容或描述具體條款，我將協助您進行專業審核。\n\n**審核重點：**\n✅ 基本資訊檢查\n⚠️ 風險評估分析\n🔒 合規性確認",
+                content: `🔍 **合約審核檢查清單**
+
+        🚨 **立即自檢項目：**
+        1. **簽約主體** - 對方是否有簽約權限？
+        2. **金額條件** - 價格、付款方式是否合理？
+        3. **履行期限** - 時間是否充足？
+        4. **違約責任** - 違約金是否過高？（建議不超過合約金額30%）
+        5. **終止條件** - 雙方終止權是否平等？
+
+        ⚠️ **危險信號：**
+        - 單方面無限責任
+        - 過短的履行期限  
+        - 模糊的標的描述
+        - 苛刻的違約條款
+
+        💡 **下一步：** 貼上具體合約條款，我將提供詳細的台灣法律分析和修改建議`,
                 risk: "YELLOW",
                 risk_color: "#ffc107",
                 risk_icon: "⚠️",
-                risk_label: "中風險"
+                risk_label: "專業指導"
             };
             addMessage(reviewResult.content, 'bot-message', reviewResult.risk, reviewResult);
             break;
