@@ -158,3 +158,39 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📚 真正的 AI 驅動系統已就緒');
     console.log('🔗 連接到：https://mjib007.zeabur.app/webhook/legal-assistant');
 });
+// ⚡ 指令處理功能
+function handleCommand(command) {
+    switch(command.toLowerCase()) {
+        case '/review-contract':
+            const reviewResult = {
+                content: "🔍 **合約審核模式啟動**\n\n請提供合約內容或描述具體條款，我將協助您進行專業審核。\n\n**審核重點：**\n✅ 基本資訊檢查\n⚠️ 風險評估分析\n🔒 合規性確認",
+                risk: "YELLOW",
+                risk_color: "#ffc107",
+                risk_icon: "⚠️",
+                risk_label: "中風險"
+            };
+            addMessage(reviewResult.content, 'bot-message', reviewResult.risk, reviewResult);
+            break;
+            
+        case '/risk-check':
+            const riskInfo = {
+                content: "⚠️ **風險檢查功能**\n\n🟢 低風險：一般法律諮詢\n🟡 中風險：合約條款審核\n🔴 高風險：時效問題、重大違約",
+                risk: "YELLOW",
+                risk_color: "#ffc107",
+                risk_icon: "⚠️",
+                risk_label: "系統說明"
+            };
+            addMessage(riskInfo.content, 'bot-message', riskInfo.risk, riskInfo);
+            break;
+            
+        default:
+            const unknownCmd = {
+                content: "❓ 未知指令。可用指令：\n• /review-contract - 合約審核\n• /risk-check - 風險檢查",
+                risk: "GREEN",
+                risk_color: "#28a745",
+                risk_icon: "✅",
+                risk_label: "系統提示"
+            };
+            addMessage(unknownCmd.content, 'bot-message', unknownCmd.risk, unknownCmd);
+    }
+}
