@@ -121,7 +121,9 @@ function addMessage(text, className, riskLevel = null, fullResponse = null) {
             additionalInfo += `</div>`;
         }
         
-        messageDiv.innerHTML = `<strong>LegalMind AI：</strong>${text}${riskBadge}${additionalInfo}`;
+        // 處理換行和格式
+            const formattedText = text.replace(/\n/g, '<br>').replace(/\d+\.\s/g, '<br>$&');
+            messageDiv.innerHTML = `<strong>LegalMind AI：</strong>${formattedText}${riskBadge}${additionalInfo}`;
     }
     
     chatMessages.appendChild(messageDiv);
